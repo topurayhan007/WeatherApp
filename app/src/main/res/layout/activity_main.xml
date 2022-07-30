@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/main_bg"
-    android:layout_margin="10dp"
+    android:padding="10dp"
     tools:context=".MainActivity">
 
     <EditText
@@ -445,6 +445,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
+        android:scrollbars="none"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -484,8 +485,8 @@
 
                 <ImageView
                     android:id="@+id/day1img"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
                     android:contentDescription="TODO"
                     tools:ignore="ContentDescription,HardcodedText"
                     tools:srcCompat="@tools:sample/avatars" />
@@ -498,7 +499,7 @@
                     android:padding="5dp"
                     android:textColor="@color/white"
                     android:text="@string/_19"
-                    android:textSize="35sp"
+                    android:textSize="25sp"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -529,8 +530,8 @@
 
                 <ImageView
                     android:id="@+id/day2img"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
                     android:contentDescription="TODO"
                     tools:ignore="ContentDescription,HardcodedText"
                     tools:srcCompat="@tools:sample/avatars" />
@@ -543,7 +544,7 @@
                     android:padding="5dp"
                     android:textColor="@color/white"
                     android:text="@string/_19"
-                    android:textSize="35sp"
+                    android:textSize="25sp"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -574,8 +575,8 @@
 
                 <ImageView
                     android:id="@+id/day3img"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
                     android:contentDescription="TODO"
                     tools:ignore="ContentDescription,HardcodedText"
                     tools:srcCompat="@tools:sample/avatars" />
@@ -588,7 +589,7 @@
                     android:padding="5dp"
                     android:textColor="@color/white"
                     android:text="@string/_19"
-                    android:textSize="35sp"
+                    android:textSize="25sp"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -617,8 +618,8 @@
 
                 <ImageView
                     android:id="@+id/day4img"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
                     android:contentDescription="TODO"
                     android:padding="5dp"
                     tools:ignore="ContentDescription,HardcodedText"
@@ -632,7 +633,7 @@
                     android:padding="5dp"
                     android:textColor="@color/white"
                     android:text="@string/_19"
-                    android:textSize="35sp"
+                    android:textSize="25sp"
                     android:textStyle="bold" />
 
             </LinearLayout>

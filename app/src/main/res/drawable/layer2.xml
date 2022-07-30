@@ -10,6 +10,6 @@
 
         </shape>
     </item>
-    <item android:drawable="@drawable/ic_big_blob_2"/>
+    <item android:drawable="@drawable/ic_blob"/>
     <!--    android:right="1dp" android:top="1dp"/>-->
 </layer-list>

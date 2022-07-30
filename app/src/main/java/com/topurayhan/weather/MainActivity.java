@@ -3,12 +3,15 @@ package com.topurayhan.weather;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.view.KeyEvent;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -37,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     static ImageView hour1img, hour2img, hour3img, hour4img, hour5img, day1img, day2img, day3img, day4img;
 
     static String cityName = "Dhaka";
+    static String prev = "";
     static String key = "488f4111e6b7924073ff22cd896b2e2a";
     static String iconLink = "";
 
@@ -92,11 +96,21 @@ public class MainActivity extends AppCompatActivity {
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
                 boolean enter = false;
                 if (i == EditorInfo.IME_ACTION_DONE){
-                    cityName = search.getText().toString();
                     search.clearFocus();
-                    if (checkWhiteSpace(cityName))
+                    cityName = search.getText().toString();
+
+                    if(cityName.equals(" ")){
+                        @SuppressLint("ShowToast") Toast toast = Toast.makeText(MainActivity.this, "Empty!", Toast.LENGTH_SHORT);
+                        Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                        vibrator.vibrate(15);
+                        getWeather(prev, key);
+                    }
+                    else if (checkWhiteSpace(cityName)) {
                         cityName = cityName.substring(0, cityName.length() - 1);
-                    getWeather(cityName, key);
+                        prev = cityName;
+                        getWeather(cityName, key);
+                    }
+
                 }
                 return false;
             }
@@ -105,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         getWeather(cityName, key);
+        prev = cityName;
 
 
     }

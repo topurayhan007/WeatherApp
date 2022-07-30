@@ -18,10 +18,14 @@ import java.net.URL;
 import java.io.InputStreamReader;
 import java.io.InputStream;
 import java.text.DecimalFormat;
+import java.text.Format;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -311,51 +315,87 @@ public class Weather extends AsyncTask<String, Void, String> {
             // 4 Day forecast
             // JSONArray list = myObject.getJSONArray("list");
 
-            String[] day;
-            String[] dayIcon;
-            String[] dayTemp;
+            List<String> day =new ArrayList<String>();
+            List<String> dayIcon =new ArrayList<String>();
+            List<String> dayTemp =new ArrayList<String>();
 
-            //currDate = date.now();
+            String[] currDateCheck = list0.getString("dt_txt").toString().split(" ");
+            String currDate = currDateCheck[0];
+            Log.d("currDate", currDate.toString());
+
             int counter = 0;
+
             for (int i = 0; i < 40; i++){
                 JSONObject listTemp = list.getJSONObject(i);
                 String tempDate = listTemp.getString("dt_txt");
-                // tempTime = tempDate.split(' ');
-                // time = tempTime[1];
+                String[] tempTime = tempDate.split(" ");
+                String timeCheck = tempTime[1];
 
-                // dateTemp = new Date(tempDate);
-                // currTempDate = dateTemp.toLocalDateString('en-us');
+                String currTempDate = tempTime[0];
+                //Log.d("currTempDate", currTempDate + " " + timeCheck);
 
-//                if (currTempDate > currDate && time == "12:00:00" && counter < 4){
-//                    currDate = currTempDate;
-//                    counter++;
-//
-//                    // push days, icons, temp
-//
-//
-//                }
+                if (currTempDate.compareTo(currDate) > 0 && timeCheck.compareTo("12:00:00") == 0 && counter < 4){
+                    currDate = currTempDate;
+                    counter++;
+                    Log.d("Dates", tempDate);
+                    Log.d("Counter", String.valueOf(counter));
+
+                    // push days, icons, temp
+
+                    // 4 Days name added to ArrayList
+                    @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleFormat = new SimpleDateFormat("yyyy-MM-dd");
+                    @SuppressLint("SimpleDateFormat") Format f = new SimpleDateFormat("EEEE");
+                    Date dateLoop = simpleFormat.parse(tempTime[0].toString());
+                    String dayFoo = f.format(dateLoop);
+                    Log.d("Day: ", dayFoo);
+                    day.add(dayFoo);
+
+                    
+                    // 4 Days temp added to ArrayList
+                    JSONObject mainLoop = listTemp.getJSONObject("main");
+                    double mainTempMin = mainLoop.getDouble("temp_min");
+                    Log.d("mainTempMin", Double.toString(mainTempMin));
+                    int tempCc = (int) Math.floor(mainTempMin);
+                    double mainTempMax = mainLoop.getDouble("temp_max");
+                    Log.d("mainTempMin", Double.toString(mainTempMax));
+                    int tempCc2 = (int) Math.ceil(mainTempMax);
+                    String mainTempStr = String.valueOf(tempCc2) + "° / " + String.valueOf(tempCc) + "°";
+                    dayTemp.add(mainTempStr);
+
+
+                    // 4 Days icon added to ArrayList
+                    JSONArray weatherLoop = listTemp.getJSONArray("weather");
+                    String iconLoop = weatherLoop.getJSONObject(0).getString("icon").toString();
+                    Log.d("icon", icon.toString());
+                    dayIcon.add(iconLoop);
+
+                }
 
             }
+            Log.d("Day1: ", day.get(0));
+            Log.d("Temp1: ", dayTemp.get(0));
+            Log.d("Icon1: ", dayIcon.get(0));
 
 
-//            MainActivity.day1.setText(day[0]);
-//            MainActivity.day2.setText(day[1]);
-//            MainActivity.day3.setText(day[2]);
-//            MainActivity.day4.setText(day[3]);
-//
-//            Ion.with(MainActivity.day1img)
-//                    .load("http://openweathermap.org/img/wn/"+dayIcon[0]+"@2x.png");
-//            Ion.with(MainActivity.day2img)
-//                    .load("http://openweathermap.org/img/wn/"+dayIcon[1]+"@2x.png");
-//            Ion.with(MainActivity.day3img)
-//                    .load("http://openweathermap.org/img/wn/"+dayIcon[2]+"@2x.png");
-//            Ion.with(MainActivity.day4img)
-//                    .load("http://openweathermap.org/img/wn/"+dayIcon[3]+"@2x.png");
-//
-//            MainActivity.day1temp.setText(dayTemp[0] + "°");
-//            MainActivity.day2temp.setText(dayTemp[1] + "°");
-//            MainActivity.day3temp.setText(dayTemp[2] + "°");
-//            MainActivity.day4temp.setText(dayTemp[3] + "°");
+
+            MainActivity.day1.setText(day.get(0));
+            MainActivity.day2.setText(day.get(1));
+            MainActivity.day3.setText(day.get(2));
+            MainActivity.day4.setText(day.get(3));
+
+            Ion.with(MainActivity.day1img)
+                    .load("http://openweathermap.org/img/wn/"+dayIcon.get(0)+"@2x.png");
+            Ion.with(MainActivity.day2img)
+                    .load("http://openweathermap.org/img/wn/"+dayIcon.get(1)+"@2x.png");
+            Ion.with(MainActivity.day3img)
+                    .load("http://openweathermap.org/img/wn/"+dayIcon.get(2)+"@2x.png");
+            Ion.with(MainActivity.day4img)
+                    .load("http://openweathermap.org/img/wn/"+dayIcon.get(3)+"@2x.png");
+
+            MainActivity.day1temp.setText(dayTemp.get(0));
+            MainActivity.day2temp.setText(dayTemp.get(1));
+            MainActivity.day3temp.setText(dayTemp.get(2));
+            MainActivity.day4temp.setText(dayTemp.get(3));
 
 
 
@@ -374,7 +414,7 @@ public class Weather extends AsyncTask<String, Void, String> {
 
 
 
-        } catch (JSONException e) {
+        } catch (JSONException | ParseException e) {
             e.printStackTrace();
         }
     }
