@@ -308,6 +308,57 @@ public class Weather extends AsyncTask<String, Void, String> {
             Log.d("visibility", visibility);
 
 
+            // 4 Day forecast
+            // JSONArray list = myObject.getJSONArray("list");
+
+            String[] day;
+            String[] dayIcon;
+            String[] dayTemp;
+
+            //currDate = date.now();
+            int counter = 0;
+            for (int i = 0; i < 40; i++){
+                JSONObject listTemp = list.getJSONObject(i);
+                String tempDate = listTemp.getString("dt_txt");
+                // tempTime = tempDate.split(' ');
+                // time = tempTime[1];
+
+                // dateTemp = new Date(tempDate);
+                // currTempDate = dateTemp.toLocalDateString('en-us');
+
+//                if (currTempDate > currDate && time == "12:00:00" && counter < 4){
+//                    currDate = currTempDate;
+//                    counter++;
+//
+//                    // push days, icons, temp
+//
+//
+//                }
+
+            }
+
+
+//            MainActivity.day1.setText(day[0]);
+//            MainActivity.day2.setText(day[1]);
+//            MainActivity.day3.setText(day[2]);
+//            MainActivity.day4.setText(day[3]);
+//
+//            Ion.with(MainActivity.day1img)
+//                    .load("http://openweathermap.org/img/wn/"+dayIcon[0]+"@2x.png");
+//            Ion.with(MainActivity.day2img)
+//                    .load("http://openweathermap.org/img/wn/"+dayIcon[1]+"@2x.png");
+//            Ion.with(MainActivity.day3img)
+//                    .load("http://openweathermap.org/img/wn/"+dayIcon[2]+"@2x.png");
+//            Ion.with(MainActivity.day4img)
+//                    .load("http://openweathermap.org/img/wn/"+dayIcon[3]+"@2x.png");
+//
+//            MainActivity.day1temp.setText(dayTemp[0] + "°");
+//            MainActivity.day2temp.setText(dayTemp[1] + "°");
+//            MainActivity.day3temp.setText(dayTemp[2] + "°");
+//            MainActivity.day4temp.setText(dayTemp[3] + "°");
+
+
+
 
             // Setting all info to views in MainActivity
             MainActivity.location.setText(location);
