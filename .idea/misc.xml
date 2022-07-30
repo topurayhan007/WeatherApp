@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/STUDY/CSE464 (Mobile Application)/Weather/app/src/main/res/drawable/day_bg.xml" value="0.2635" />
+        <entry key="..\:/STUDY/CSE464 (Mobile Application)/Weather/app/src/main/res/drawable/description.xml" value="0.2635" />
+        <entry key="..\:/STUDY/CSE464 (Mobile Application)/Weather/app/src/main/res/drawable/hours_bg.xml" value="0.2625" />
+        <entry key="..\:/STUDY/CSE464 (Mobile Application)/Weather/app/src/main/res/drawable/ic_baseline_calendar_today_24.xml" value="0.237" />
+        <entry key="..\:/STUDY/CSE464 (Mobile Application)/Weather/app/src/main/res/drawable/ic_baseline_location_on_24.xml" value="0.2635" />
+        <entry key="..\:/STUDY/CSE464 (Mobile Application)/Weather/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.117" />
+        <entry key="..\:/STUDY/CSE464 (Mobile Application)/Weather/app/src/main/res/drawable/ic_humidity.xml" value="0.2635" />
+        <entry key="..\:/STUDY/CSE464 (Mobile Application)/Weather/app/src/main/res/drawable/ic_pressure.xml" value="0.121" />
+        <entry key="..\:/STUDY/CSE464 (Mobile Application)/Weather/app/src/main/res/drawable/ic_visibility.xml" value="0.121" />
+        <entry key="..\:/STUDY/CSE464 (Mobile Application)/Weather/app/src/main/res/drawable/ic_wind.xml" value="0.2635" />
+        <entry key="..\:/STUDY/CSE464 (Mobile Application)/Weather/app/src/main/res/drawable/main_bg.xml" value="0.237" />
+        <entry key="..\:/STUDY/CSE464 (Mobile Application)/Weather/app/src/main/res/drawable/search_bg.xml" value="0.1" />
+        <entry key="..\:/STUDY/CSE464 (Mobile Application)/Weather/app/src/main/res/layout/activity_main.xml" value="0.18857142857142858" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

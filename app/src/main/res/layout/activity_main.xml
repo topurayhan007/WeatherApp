@@ -1,0 +1,644 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_bg"
+    android:layout_margin="10dp"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/search"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_margin="8dp"
+        android:background="@drawable/search_bg"
+        android:drawableStart="@drawable/ic_baseline_search_24"
+        android:drawableLeft="@drawable/ic_baseline_search_24"
+        android:drawablePadding="10dp"
+        android:paddingHorizontal="10dp"
+        android:cursorVisible="false"
+        android:hint="@string/search_city"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:autofillHints="name"
+        android:inputType="textAutoComplete"
+        android:imeOptions="actionDone"
+        tools:ignore="LabelFor" />
+
+    <TextView
+        android:id="@+id/city"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:drawableStart="@drawable/ic_baseline_location_on_24"
+        android:drawableLeft="@drawable/ic_baseline_location_on_24"
+        android:drawablePadding="5dp"
+        android:fontFamily="@font/average_sans"
+        android:textColor="@color/white"
+        android:paddingStart="10dp"
+        android:paddingLeft="10dp"
+        android:text="@string/san_francisco"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search"
+        app:layout_constraintVertical_bias="0.009"
+        tools:ignore="RtlCompat,RtlHardcoded,RtlSymmetry,UseCompatTextViewDrawableXml" />
+
+    <TextView
+        android:id="@+id/tempMain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:fontFamily="@font/roboto_condensed_regular"
+        android:text="@string/_20"
+        android:textColor="@color/white"
+        android:textAlignment="center"
+        android:textSize="150sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/degree"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/city"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="RtlCompat" />
+
+    <TextView
+        android:id="@+id/degree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="528dp"
+        android:fontFamily="@font/average_sans"
+        android:text="@string/c"
+        android:textColor="#f3c936"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.83"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/city"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/description"
+        android:fontFamily="@font/average_sans"
+        android:gravity="center"
+        android:paddingHorizontal="15dp"
+        android:text="@string/cloudy"
+        android:textAlignment="center"
+        android:textColor="#201300"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tempMain"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="0dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/description"
+        app:layout_constraintVertical_bias="0.04"
+        tools:ignore="UselessLeaf">
+
+        <TextView
+            android:id="@+id/windSpeed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="0"
+            android:drawableStart="@drawable/ic_wind"
+            android:drawableLeft="@drawable/ic_wind"
+            android:drawablePadding="5dp"
+            android:fontFamily="@font/average_sans"
+            android:gravity="center"
+            android:paddingHorizontal="10dp"
+            android:text="@string/_5_km_h"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            tools:ignore="RtlCompat,UseCompatTextViewDrawableXml" />
+
+        <TextView
+            android:id="@+id/humidity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="0"
+            android:drawableStart="@drawable/ic_humidity"
+            android:drawableLeft="@drawable/ic_humidity"
+            android:drawablePadding="5dp"
+            android:fontFamily="@font/average_sans"
+            android:gravity="center"
+            android:paddingHorizontal="10dp"
+            android:text="@string/_70"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            tools:ignore="RtlCompact,UseCompatTextViewDrawableXml" />
+
+        <TextView
+            android:id="@+id/visibility"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="0"
+            android:drawableStart="@drawable/ic_visibility"
+            android:drawableLeft="@drawable/ic_visibility"
+            android:drawablePadding="5dp"
+            android:fontFamily="@font/average_sans"
+            android:gravity="center"
+            android:paddingHorizontal="10dp"
+            android:text="@string/_10_km"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            tools:ignore="RtlCompat,UseCompatTextViewDrawableXml" />
+
+        <TextView
+            android:id="@+id/pressure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="0"
+            android:drawableStart="@drawable/ic_pressure"
+            android:drawableLeft="@drawable/ic_pressure"
+            android:drawablePadding="5dp"
+            android:fontFamily="@font/average_sans"
+            android:gravity="center"
+            android:paddingHorizontal="10dp"
+            android:text="@string/_1000_pa"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            tools:ignore="RtlCompat,UseCompatTextViewDrawableXml" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout5hours"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="@drawable/hours_bg"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.07999998"
+        tools:ignore="DisableBaselineAlignment,UselessLeaf">
+
+        <TextView
+            android:id="@+id/todayText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:textColor="@color/white"
+            android:drawableStart="@drawable/ic_baseline_calendar_today_24"
+            android:drawableLeft="@drawable/ic_baseline_calendar_today_24"
+            android:drawablePadding="5dp"
+            android:fontFamily="@font/average_sans"
+            android:paddingStart="10dp"
+            android:paddingLeft="10dp"
+            android:text="@string/today"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:ignore="RtlCompat,RtlSymmetry,UseCompatTextViewDrawableXml" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingBottom="5dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+            app:layout_constraintVertical_bias="0.02"
+            tools:ignore="DisableBaselineAlignment,UselessLeaf">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                tools:ignore="NestedWeights,UselessParent">
+
+                <TextView
+                    android:id="@+id/hour1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/average_sans"
+                    android:textColor="@color/white"
+                    android:text="@string/_10_am"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/hour1img"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:contentDescription="TODO"
+                    tools:ignore="ContentDescription,HardcodedText"
+                    tools:srcCompat="@tools:sample/avatars" />
+
+                <TextView
+                    android:id="@+id/hour1temp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/average_sans"
+                    android:textColor="@color/white"
+                    android:text="@string/_19"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                tools:ignore="UselessParent">
+
+                <TextView
+                    android:id="@+id/hour2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/average_sans"
+                    android:textColor="@color/white"
+                    android:text="@string/_10_am"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/hour2img"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:contentDescription="TODO"
+                    tools:ignore="ContentDescription,HardcodedText"
+                    tools:srcCompat="@tools:sample/avatars" />
+
+                <TextView
+                    android:id="@+id/hour2temp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/average_sans"
+                    android:textColor="@color/white"
+                    android:text="@string/_19"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                tools:ignore="UselessParent">
+
+                <TextView
+                    android:id="@+id/hour3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/average_sans"
+                    android:textColor="@color/white"
+                    android:text="@string/_10_am"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/hour3img"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:contentDescription="TODO"
+                    tools:ignore="ContentDescription,HardcodedText"
+                    tools:srcCompat="@tools:sample/avatars" />
+
+                <TextView
+                    android:id="@+id/hour3temp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/average_sans"
+                    android:textColor="@color/white"
+                    android:text="@string/_19"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                tools:ignore="UselessParent">
+
+                <TextView
+                    android:id="@+id/hour4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/average_sans"
+                    android:textColor="@color/white"
+                    android:text="@string/_10_am"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/hour4img"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:contentDescription="TODO"
+                    tools:ignore="ContentDescription,HardcodedText"
+                    tools:srcCompat="@tools:sample/avatars" />
+
+                <TextView
+                    android:id="@+id/hour4temp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/average_sans"
+                    android:textColor="@color/white"
+                    android:text="@string/_19"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                tools:ignore="UselessParent">
+
+                <TextView
+                    android:id="@+id/hour5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/average_sans"
+                    android:textColor="@color/white"
+                    android:text="@string/_10_am"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/hour5img"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:contentDescription="TODO"
+                    tools:ignore="ContentDescription,HardcodedText"
+                    tools:srcCompat="@tools:sample/avatars" />
+
+                <TextView
+                    android:id="@+id/hour5temp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/average_sans"
+                    android:textColor="@color/white"
+                    android:text="@string/_19"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout5hours">
+
+        <LinearLayout
+            android:id="@+id/linearLayout4Day"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            tools:ignore="DisableBaselineAlignment,ScrollViewSize,UselessLeaf">
+
+            <LinearLayout
+                android:layout_width="150dp"
+                android:layout_height="200dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_weight="1"
+                android:background="@drawable/day_bg"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="5dp"
+                android:paddingHorizontal="10dp"
+                tools:ignore="NestedWeights,RtlCompat,UselessParent">
+
+                <TextView
+                    android:id="@+id/day1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/average_sans"
+                    android:padding="5dp"
+                    android:textColor="@color/white"
+                    android:text="@string/saturday"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/day1img"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:contentDescription="TODO"
+                    tools:ignore="ContentDescription,HardcodedText"
+                    tools:srcCompat="@tools:sample/avatars" />
+
+                <TextView
+                    android:id="@+id/day1temp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/average_sans"
+                    android:padding="5dp"
+                    android:textColor="@color/white"
+                    android:text="@string/_19"
+                    android:textSize="35sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="150dp"
+                android:layout_height="200dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_weight="1"
+                android:background="@drawable/day_bg"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="5dp"
+                android:paddingHorizontal="10dp"
+                tools:ignore="UselessParent">
+
+                <TextView
+                    android:id="@+id/day2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/average_sans"
+                    android:padding="5dp"
+                    android:textColor="@color/white"
+                    android:text="@string/sunday"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/day2img"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:contentDescription="TODO"
+                    tools:ignore="ContentDescription,HardcodedText"
+                    tools:srcCompat="@tools:sample/avatars" />
+
+                <TextView
+                    android:id="@+id/day2temp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/average_sans"
+                    android:padding="5dp"
+                    android:textColor="@color/white"
+                    android:text="@string/_19"
+                    android:textSize="35sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="150dp"
+                android:layout_height="200dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_weight="1"
+                android:background="@drawable/day_bg"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="5dp"
+                android:paddingHorizontal="10dp"
+                tools:ignore="UselessParent">
+
+                <TextView
+                    android:id="@+id/day3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/average_sans"
+                    android:padding="5dp"
+                    android:textColor="@color/white"
+                    android:text="@string/monday"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/day3img"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:contentDescription="TODO"
+                    tools:ignore="ContentDescription,HardcodedText"
+                    tools:srcCompat="@tools:sample/avatars" />
+
+                <TextView
+                    android:id="@+id/day3temp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/average_sans"
+                    android:padding="5dp"
+                    android:textColor="@color/white"
+                    android:text="@string/_19"
+                    android:textSize="35sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="150dp"
+                android:layout_height="200dp"
+                android:layout_weight="1"
+                android:background="@drawable/day_bg"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="5dp"
+                android:paddingHorizontal="10dp"
+                tools:ignore="UselessParent">
+
+                <TextView
+                    android:id="@+id/day4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/average_sans"
+                    android:padding="5dp"
+                    android:textColor="@color/white"
+                    android:text="@string/wednesday"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/day4img"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:contentDescription="TODO"
+                    android:padding="5dp"
+                    tools:ignore="ContentDescription,HardcodedText"
+                    tools:srcCompat="@tools:sample/avatars" />
+
+                <TextView
+                    android:id="@+id/day4temp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/average_sans"
+                    android:padding="5dp"
+                    android:textColor="@color/white"
+                    android:text="@string/_19"
+                    android:textSize="35sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
