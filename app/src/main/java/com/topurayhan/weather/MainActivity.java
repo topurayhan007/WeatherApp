@@ -96,8 +96,9 @@ public class MainActivity extends AppCompatActivity {
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
                 boolean enter = false;
                 if (i == EditorInfo.IME_ACTION_DONE){
-                    search.clearFocus();
+
                     cityName = search.getText().toString();
+                    search.clearFocus();
 
                     if(cityName.equals(" ")){
                         @SuppressLint("ShowToast") Toast toast = Toast.makeText(MainActivity.this, "Empty!", Toast.LENGTH_SHORT);
