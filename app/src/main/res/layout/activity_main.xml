@@ -18,7 +18,8 @@
         android:drawableLeft="@drawable/ic_baseline_search_24"
         android:drawablePadding="10dp"
         android:paddingHorizontal="10dp"
-        android:cursorVisible="false"
+        android:cursorVisible="true"
+        android:textCursorDrawable="@color/white"
         android:hint="@string/search_city"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,7 +27,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:autofillHints="name"
-        android:inputType="textAutoComplete"
+        android:inputType="textCapWords"
         android:imeOptions="actionDone"
         tools:ignore="LabelFor" />
 
@@ -86,10 +87,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.83"
+        app:layout_constraintHorizontal_bias="0.8"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/city"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.04000002" />
 
     <TextView
         android:id="@+id/description"
@@ -281,7 +282,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/average_sans"
                     android:textColor="@color/white"
-                    android:text="@string/_19"
+                    android:text="@string/_21"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -319,7 +320,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/average_sans"
                     android:textColor="@color/white"
-                    android:text="@string/_19"
+                    android:text="@string/_21"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -357,7 +358,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/average_sans"
                     android:textColor="@color/white"
-                    android:text="@string/_19"
+                    android:text="@string/_21"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -395,7 +396,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/average_sans"
                     android:textColor="@color/white"
-                    android:text="@string/_19"
+                    android:text="@string/_21"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -433,7 +434,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/average_sans"
                     android:textColor="@color/white"
-                    android:text="@string/_19"
+                    android:text="@string/_21"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 

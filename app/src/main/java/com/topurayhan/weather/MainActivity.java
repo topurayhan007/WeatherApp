@@ -1,11 +1,14 @@
 package com.topurayhan.weather;
 
+import static android.widget.Toast.*;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
@@ -100,8 +103,8 @@ public class MainActivity extends AppCompatActivity {
                     cityName = search.getText().toString();
                     search.clearFocus();
 
-                    if(cityName.equals(" ")){
-                        @SuppressLint("ShowToast") Toast toast = Toast.makeText(MainActivity.this, "Empty!", Toast.LENGTH_SHORT);
+                    if(cityName.isEmpty() || cityName.equals(" ")){
+                        Toast.makeText(getApplicationContext(), "Empty input!", Toast.LENGTH_SHORT).show();
                         Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                         vibrator.vibrate(15);
                         getWeather(prev, key);
@@ -126,6 +129,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getWeather(String cityName, String key) {
+        Log.d("CityName: ", cityName);
         Weather getData = new Weather();
         getData.execute("https://api.openweathermap.org/data/2.5/forecast?q="+cityName+"&appid="+key+"&units=metric");
     }

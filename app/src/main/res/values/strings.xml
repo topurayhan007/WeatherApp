@@ -1,15 +1,16 @@
 <resources>
     <string name="app_name">Weather</string>
-    <string name="san_francisco">San Francisco, US</string>
-    <string name="_20">55</string>
+    <string name="san_francisco">Dhaka, BD</string>
+    <string name="_20">23</string>
     <string name="c">°C</string>
     <string name="_5_km_h">5 km/h</string>
-    <string name="_1000_pa">1000 Pa</string>
+    <string name="_1000_pa">1000 hPa</string>
     <string name="_70">70 %</string>
     <string name="_10_km">10 km</string>
     <string name="today">Today</string>
     <string name="_10_am">10 AM</string>
     <string name="_19">19° / 20°</string>
+    <string name="_21">21°</string>
     <string name="cloudy">Cloudy</string>
     <string name="saturday">Saturday</string>
     <string name="wednesday">Wednesday</string>

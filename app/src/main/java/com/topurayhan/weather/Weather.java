@@ -26,6 +26,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.SplittableRandom;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -114,6 +115,64 @@ public class Weather extends AsyncTask<String, Void, String> {
             JSONObject main2 = list2.getJSONObject("main");
             JSONObject main3 = list3.getJSONObject("main");
             JSONObject main4 = list4.getJSONObject("main");
+
+            int index = 0;
+            int min = Integer.MIN_VALUE;
+            for (int i = 0; i < 40; i++){
+                JSONObject listTemp = list.getJSONObject(i);
+
+                JSONObject mainLoop = listTemp.getJSONObject("main");
+                String timeLoop = listTemp.getString("dt_txt").toString();
+
+                String[] timeSplit = timeLoop.split(" ");
+                String loopDate = timeSplit[0].toString();
+                String[] loopDateList = loopDate.split("-");
+                String dayLoop = loopDateList[2].toString();
+
+                String timeTemp = timeSplit[1].toString();
+                String[] hourList = timeTemp.split(":");
+                String hour = hourList[0];
+                Log.d("Hour: ", hour);
+                //Take Hour = 00 into consideration
+
+
+                @SuppressLint("SimpleDateFormat") SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                Date date = new Date();
+                String currDateTemp = formatter.format(date);
+                String[] currTimeSplit = currDateTemp.split(" ");
+                String currDate = currTimeSplit[0].toString();
+                String[] currDateList = currDate.split("-");
+                String dayNow = currDateList[2].toString();
+
+                String currTime = currTimeSplit[1].toString();
+                String[] currHourList = currTime.split(":");
+                String currHour = currHourList[0].toString();
+                Log.d("currHour: ", currHour);
+
+                int hourInt = Integer.parseInt(hour);
+                int currHourInt = Integer.parseInt(currHour);
+                int dayNowInt = Integer.parseInt(dayNow);
+                int dayLoopInt = Integer.parseInt(dayLoop);
+
+                int diff = currHourInt - hourInt;
+                Log.d("Diff: ", String.valueOf(diff));
+
+                //&& diff < min check short diff and take that index
+                if (diff > 0 && dayNowInt == dayLoopInt){
+                    //Do Stuff
+                    min = diff;
+                    index = i;
+                    Log.d("Index Date1: ", dayLoop);
+
+                }
+                else if (diff == 0 && dayNowInt == dayLoopInt){
+                    // Push hour, hourTemp, hourImg
+                    index = i;
+                    Log.d("Index Date2: ", dayLoop);
+                }
+
+            }
+            Log.d("Index: ", String.valueOf(index));
 
             String time = list0.getString("dt_txt").toString();
             Log.d("time", time.toString());
@@ -295,7 +354,7 @@ public class Weather extends AsyncTask<String, Void, String> {
             String humidity = main.getString("humidity").toString() + " %";
             Log.d("humidity", humidity.toString());
 
-            String pressure = main.getString("pressure").toString() + " Pa";
+            String pressure = main.getString("pressure").toString() + " hPa";
             Log.d("pressure", pressure.toString());
 
             JSONObject wind = list0.getJSONObject("wind");
@@ -332,6 +391,8 @@ public class Weather extends AsyncTask<String, Void, String> {
                 String timeCheck = tempTime[1];
 
                 String currTempDate = tempTime[0];
+
+
                 //Log.d("currTempDate", currTempDate + " " + timeCheck);
 
                 if (currTempDate.compareTo(currDate) > 0 && timeCheck.compareTo("12:00:00") == 0 && counter < 4){
