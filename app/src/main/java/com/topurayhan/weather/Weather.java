@@ -29,7 +29,7 @@ import org.json.JSONObject;
 
 
 public class Weather extends AsyncTask<String, Void, String> {
-    String result;
+    String result; String error;
     @Override
     protected String doInBackground(String... urls) {
         result = "";
@@ -54,8 +54,12 @@ public class Weather extends AsyncTask<String, Void, String> {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+            error = "City Not Found!";
+            Log.d("IOerror: ", error);
+            MainActivity.error = error;
         }
         return null;
+
     }
 
     @SuppressLint("SetTextI18n")
@@ -189,7 +193,7 @@ public class Weather extends AsyncTask<String, Void, String> {
                 int dayLoopInt = Integer.parseInt(dayLoop);
 
                 // Taking consideration of JSON time = 00:00:00
-                if (hourInt == 0){
+                if (hourInt == 0 && currHourInt != 0){
                     hourInt = 24;
                 }
 
@@ -300,13 +304,13 @@ public class Weather extends AsyncTask<String, Void, String> {
                 int tempInt = (int) Math.round(hourTempD);
                 String tempIntT = String.valueOf(tempInt);
                 String hourTemp = tempIntT + "°";
-                // hoursTemp to ArrayList hourTemp
+                // hourTemp to ArrayList hoursTemp
                 hoursTemp.add(hourTemp);
 
                 JSONArray weatherLoop = listTemp.getJSONArray("weather");
                 String hourIcon = weatherLoop.getJSONObject(0).getString("icon");
                 Log.d("icon", hourIcon);
-                // hoursIcon to ArrayList hourIcon
+                // hourIcon to ArrayList hoursIcon
                 hoursIcon.add(hourIcon);
 
             }
@@ -369,6 +373,9 @@ public class Weather extends AsyncTask<String, Void, String> {
 
         } catch (JSONException | ParseException e) {
             e.printStackTrace();
+            // Show toast
+            error = "City Not Found!";
+            MainActivity.error = error;
         }
     }
 }

@@ -1,15 +1,17 @@
 package com.topurayhan.weather;
 
-import static android.widget.Toast.*;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.util.Log;
-import android.view.KeyEvent;
+import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -18,24 +20,11 @@ import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
+    private GpsTracker gpsTracker;
     @SuppressLint("StaticFieldLeak")
-    static TextView location;
-    @SuppressLint("StaticFieldLeak")
-    static TextView description;
-    @SuppressLint("StaticFieldLeak")
-    static TextView humidity;
-    @SuppressLint("StaticFieldLeak")
-    static TextView pressure;
-    @SuppressLint("StaticFieldLeak")
-    static ImageView icon;
-    @SuppressLint("StaticFieldLeak")
-    static TextView mainTemp;
+    static TextView location, description, humidity, pressure, mainTemp,windSpeed, visibility;
     @SuppressLint("StaticFieldLeak")
     static EditText search;
-    @SuppressLint("StaticFieldLeak")
-    static TextView windSpeed;
-    @SuppressLint("StaticFieldLeak")
-    static TextView visibility;
     @SuppressLint("StaticFieldLeak")
     static TextView hour1temp, hour2temp, hour3temp, hour4temp, hour5temp, hour1, hour2, hour3, hour4, hour5,
             day1temp, day2temp, day3temp, day4temp, day1, day2, day3, day4;
@@ -45,86 +34,74 @@ public class MainActivity extends AppCompatActivity {
     static String cityName = "Dhaka";
     static String prev = "";
     static String key = "488f4111e6b7924073ff22cd896b2e2a";
-    static String iconLink = "";
+    static String error = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        search = (EditText) findViewById(R.id.search);
-        location = (TextView) findViewById(R.id.city);
-        description = (TextView) findViewById(R.id.description);
-        mainTemp = (TextView) findViewById(R.id.tempMain);
-        humidity = (TextView) findViewById(R.id.humidity);
-        pressure = (TextView) findViewById(R.id.pressure);
-        windSpeed = (TextView) findViewById(R.id.windSpeed);
-        visibility = (TextView) findViewById(R.id.visibility);
+        search = findViewById(R.id.search);
+        search.clearFocus();
+        location = findViewById(R.id.city);
+        description = findViewById(R.id.description);
+        mainTemp = findViewById(R.id.tempMain);
+        humidity = findViewById(R.id.humidity);
+        pressure = findViewById(R.id.pressure);
+        windSpeed = findViewById(R.id.windSpeed);
+        visibility = findViewById(R.id.visibility);
 
-        hour1 = (TextView) findViewById(R.id.hour1);
-        hour2 = (TextView) findViewById(R.id.hour2);
-        hour3 = (TextView) findViewById(R.id.hour3);
-        hour4 = (TextView) findViewById(R.id.hour4);
-        hour5 = (TextView) findViewById(R.id.hour5);
+        hour1 = findViewById(R.id.hour1);
+        hour2 = findViewById(R.id.hour2);
+        hour3 = findViewById(R.id.hour3);
+        hour4 = findViewById(R.id.hour4);
+        hour5 = findViewById(R.id.hour5);
 
-        hour1temp = (TextView) findViewById(R.id.hour1temp);
-        hour2temp = (TextView) findViewById(R.id.hour2temp);
-        hour3temp = (TextView) findViewById(R.id.hour3temp);
-        hour4temp = (TextView) findViewById(R.id.hour4temp);
-        hour5temp = (TextView) findViewById(R.id.hour5temp);
+        hour1temp = findViewById(R.id.hour1temp);
+        hour2temp = findViewById(R.id.hour2temp);
+        hour3temp = findViewById(R.id.hour3temp);
+        hour4temp = findViewById(R.id.hour4temp);
+        hour5temp = findViewById(R.id.hour5temp);
 
-        hour1img = (ImageView) findViewById(R.id.hour1img);
-        hour2img = (ImageView) findViewById(R.id.hour2img);
-        hour3img = (ImageView) findViewById(R.id.hour3img);
-        hour4img = (ImageView) findViewById(R.id.hour4img);
-        hour5img = (ImageView) findViewById(R.id.hour5img);
+        hour1img = findViewById(R.id.hour1img);
+        hour2img = findViewById(R.id.hour2img);
+        hour3img = findViewById(R.id.hour3img);
+        hour4img = findViewById(R.id.hour4img);
+        hour5img = findViewById(R.id.hour5img);
 
-        day1 = (TextView) findViewById(R.id.day1);
-        day2 = (TextView) findViewById(R.id.day2);
-        day3 = (TextView) findViewById(R.id.day3);
-        day4 = (TextView) findViewById(R.id.day4);
+        day1 = findViewById(R.id.day1);
+        day2 = findViewById(R.id.day2);
+        day3 = findViewById(R.id.day3);
+        day4 = findViewById(R.id.day4);
 
-        day1temp = (TextView) findViewById(R.id.day1temp);
-        day2temp = (TextView) findViewById(R.id.day2temp);
-        day3temp = (TextView) findViewById(R.id.day3temp);
-        day4temp = (TextView) findViewById(R.id.day4temp);
+        day1temp = findViewById(R.id.day1temp);
+        day2temp = findViewById(R.id.day2temp);
+        day3temp = findViewById(R.id.day3temp);
+        day4temp = findViewById(R.id.day4temp);
 
-        day1img = (ImageView) findViewById(R.id.day1img);
-        day2img = (ImageView) findViewById(R.id.day2img);
-        day3img = (ImageView) findViewById(R.id.day3img);
-        day4img = (ImageView) findViewById(R.id.day4img);
+        day1img = findViewById(R.id.day1img);
+        day2img = findViewById(R.id.day2img);
+        day3img = findViewById(R.id.day3img);
+        day4img = findViewById(R.id.day4img);
 
-        search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-                boolean enter = false;
-                if (i == EditorInfo.IME_ACTION_DONE){
+        search.setOnEditorActionListener((textView, i, keyEvent) -> {
+            if (i == EditorInfo.IME_ACTION_DONE){
+                cityName = search.getText().toString();
 
-                    cityName = search.getText().toString();
-                    search.clearFocus();
-
-                    if(cityName.isEmpty() || cityName.equals(" ")){
-                        Toast.makeText(getApplicationContext(), "Empty input!", Toast.LENGTH_SHORT).show();
-                        Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-                        vibrator.vibrate(15);
-                        getWeather(prev, key);
-                    }
-                    else if (checkWhiteSpace(cityName)) {
-                        cityName = cityName.substring(0, cityName.length() - 1);
-                        prev = cityName;
-                        getWeather(cityName, key);
-                    }
-
+                if(cityName.isEmpty() || cityName.equals(" ")){
+                    Toast.makeText(getApplicationContext(), "Please enter a city!", Toast.LENGTH_SHORT).show();
+                    Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                    vibrator.vibrate(15);
+                    getWeather(prev, key);
                 }
-                return false;
+                getWeather(cityName,key);
+
             }
-
-
+            return false;
         });
 
-        getWeather(cityName, key);
         prev = cityName;
-
+        getWeather(cityName,key);
 
     }
 
@@ -132,14 +109,12 @@ public class MainActivity extends AppCompatActivity {
         Log.d("CityName: ", cityName);
         Weather getData = new Weather();
         getData.execute("https://api.openweathermap.org/data/2.5/forecast?q="+cityName+"&appid="+key+"&units=metric");
+//        if (!error.isEmpty()){
+//            Toast.makeText(getApplicationContext(), error, Toast.LENGTH_SHORT).show();
+//            Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+//            vibrator.vibrate(50);
+//            error ="";
+//        }
     }
 
-    public boolean checkWhiteSpace(String cityName) {
-        String str = cityName;
-        if (str.charAt(str.length()-1) == ' '){
-            return true;
-        }
-        else
-            return false;
-    }
 }
