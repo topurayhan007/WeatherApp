@@ -237,7 +237,7 @@ public class Weather extends AsyncTask<String, Void, String> {
                     int tempCc2 = (int) Math.ceil(mainTempMax);
                     String mainTempCc = String.valueOf(tempCc);
                     String mainTempCc2 = String.valueOf(tempCc2);
-                    String mainTempStr = mainTempCc2 + "° / " + mainTempCc + "°";
+                    String mainTempStr = mainTempCc2 + "° | " + mainTempCc + "°";
                     dayTemp.add(mainTempStr);
 
 
@@ -373,9 +373,11 @@ public class Weather extends AsyncTask<String, Void, String> {
 
         } catch (JSONException | ParseException e) {
             e.printStackTrace();
-            // Show toast
             error = "City Not Found!";
-            MainActivity.error = error;
+            Log.d("JSONerror: ", error);
+            // Show toast
+            // error = "City Not Found!";
+            // MainActivity.error = error;
         }
     }
 }
