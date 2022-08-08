@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Weather</string>
-    <string name="san_francisco">Dhaka, BD</string>
-    <string name="_20">23</string>
+    <string name="san_francisco"> </string>
+    <string name="_20">26</string>
     <string name="c">°C</string>
     <string name="_5_km_h">5 km/h</string>
     <string name="_1000_pa">1000 hPa</string>

@@ -55,7 +55,7 @@ public class Weather extends AsyncTask<String, Void, String> {
         } catch (IOException e) {
             e.printStackTrace();
             error = "City Not Found!";
-            Log.d("IOerror: ", error);
+            Log.d("IOError: ", error);
             MainActivity.error = error;
         }
         return null;
@@ -374,9 +374,8 @@ public class Weather extends AsyncTask<String, Void, String> {
         } catch (JSONException | ParseException e) {
             e.printStackTrace();
             error = "City Not Found!";
-            Log.d("JSONerror: ", error);
+            Log.d("JSONError: ", error);
             // Show toast
-            // error = "City Not Found!";
             // MainActivity.error = error;
         }
     }

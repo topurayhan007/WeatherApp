@@ -2,16 +2,12 @@ package com.topurayhan.weather;
 
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.util.Log;
-import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -20,7 +16,8 @@ import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
-    private GpsTracker gpsTracker;
+    public GpsTracker gpsTracker;
+    static double latitude, longitude, prevLat, prevLon;
     @SuppressLint("StaticFieldLeak")
     static TextView location, description, humidity, pressure, mainTemp,windSpeed, visibility;
     @SuppressLint("StaticFieldLeak")
@@ -35,6 +32,27 @@ public class MainActivity extends AppCompatActivity {
     static String prev = "";
     static String key = "488f4111e6b7924073ff22cd896b2e2a";
     static String error = "";
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (GpsTracker.isFromSetting){
+            finish();
+            startActivity(getIntent());
+            getLocation(latitude, longitude);
+            GpsTracker.isFromSetting=false;
+        }
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if (GpsTracker.isFromSetting){
+            finish();
+            startActivity(getIntent());
+            getLocation(latitude,longitude);
+            GpsTracker.isFromSetting=false;
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,7 +119,14 @@ public class MainActivity extends AppCompatActivity {
         });
 
         prev = cityName;
-        getWeather(cityName,key);
+
+        //getWeather(cityName,key);
+//        if(prevLon != 0.0 && prevLat != 0.0 || latitude != 0.0 && longitude != 0.0){
+//            //getLocation(prevLat, prevLon);
+//            getLocation(latitude, longitude);
+//        }
+        //getLocation(prevLat, prevLon);
+        getLocation(latitude,longitude);
 
     }
 
@@ -117,4 +142,26 @@ public class MainActivity extends AppCompatActivity {
 //        }
     }
 
+
+    public void getLocation(Double lat, Double lon){
+        gpsTracker = new GpsTracker(MainActivity.this);
+        if(gpsTracker.canGetLocation()){
+            double latitude = gpsTracker.getLatitude();
+            double longitude = gpsTracker.getLongitude();
+            lat = latitude;
+            lon = longitude;
+            if (lat == 0.0 && lon == 0.0){
+                startActivity(getIntent());
+                lat = gpsTracker.latitude;
+                lon = gpsTracker.longitude;
+            }
+            Log.d("Lat: ", lat.toString());
+            Weather getData = new Weather();
+            getData.execute("https://api.openweathermap.org/data/2.5/forecast?lat="+lat+"&lon="+lon+"&appid="+key+"&units=metric");
+            prevLat = lat;
+            prevLon = lon;
+        }else{
+            gpsTracker.showSettingsAlert();
+        }
+    }
 }
