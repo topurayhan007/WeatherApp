@@ -4,7 +4,7 @@
 
 ### To use the app download this apk file:
 
- #### [https://github.com/topurayhan007/WeatherApp/blob/main/APK/Weather.apk]
+ #### [https://github.com/topurayhan007/WeatherApp/raw/main/APK/Weather.apk]
  
 
 ![Screenshot 1](asset/1.jpg)
